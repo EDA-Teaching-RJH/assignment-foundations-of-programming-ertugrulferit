@@ -33,11 +33,12 @@ def run_system_monolith():
                 print(n[i] + " - " + r[i]) 
                 
         elif opt == "2":
+            new_name = input("Name: ")
+            new_rank = input("Rank: ")
+            new_division = input("Division: ")
             n.append(new_name)
             r.append(new_rank)
             d.append(new_division)
-            
-            n.append(new_name)
             print("Crew member added.")
             
         elif opt == "3":
