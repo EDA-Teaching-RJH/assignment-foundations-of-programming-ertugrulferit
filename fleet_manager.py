@@ -14,3 +14,13 @@ def add_crew():
     print("Crew member added.")
 if opt == "2":
     add_crew()
+def remove_crew():
+    rem = input("Name to remove: ")
+    if rem in n:
+        idx = n.index(rem)
+        n.pop(idx)
+        r.pop(idx)
+        d.pop(idx)
+        print("Removed.")
+    else:
+        print("no such name found")
