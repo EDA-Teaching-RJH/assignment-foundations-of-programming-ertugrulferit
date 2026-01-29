@@ -48,8 +48,9 @@ def run_system_monolith():
                 n.pop(idx)
                 r.pop(idx)
                 d.pop(idx)
-            else:
                 print("Removed.")
+            else:
+                print("no such name found")
             
         elif opt == "4":
             print("Analyzing...")
