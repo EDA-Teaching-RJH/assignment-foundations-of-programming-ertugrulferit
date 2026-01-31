@@ -58,27 +58,33 @@ def search_crew(names, ids):
     else:
         print("Crew member not found.")
 
+def update_rank(names, ranks, ids):
+    updateid = input("Enter ID to update rank: ")
+    if updateid in ids:
+        idx = ids.index(updateid)
+        ranks[idx] = input("Enter new rank for " + names[idx] + ": ")
+        print("Rank updated.")
+    else:
+        print("ID not found.")
+
 def main():
     n, r, d, i = init_database()
     name = input("Login Name: ")
     
     while True:
         print("\nTerminal Active: " + name)
-        print("1. View | 2. Add | 3. Remove | 4. Payroll | 5. Search | 6. Exit")
+        print("1. View | 2. Add | 3. Remove | 4. Payroll | 5. Search | 6. Update | 7. Exit")
         opt = input("Choice: ")
         
-        if opt == "1":
-            view_crew(n, r, i)
-        elif opt == "2":
-            add_crew(n, r, d, i)
-        elif opt == "3":
-            remove_crew(n, r, d, i)
+        if opt == "1": view_crew(n, r, i)
+        elif opt == "2": add_crew(n, r, d, i)
+        elif opt == "3": remove_crew(n, r, d, i)
         elif opt == "4":
             total = calculate_payroll(r)
             print("Total Payroll: $" + str(total))
-        elif opt == "5":
-            search_crew(n, i)
-        elif opt == "6":
+        elif opt == "5": search_crew(n, i)
+        elif opt == "6": update_rank(n, r, i)
+        elif opt == "7":
             print("Shutting down...")
             break
 
