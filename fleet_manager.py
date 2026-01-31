@@ -47,7 +47,7 @@ def calculate_payroll(ranks):
 def search_crew(names, ids):
     searchid = input("Enter ID to search: ")
     if searchid in ids:
-        idx = ids.i(searchid) 
+        idx = ids.index(searchid)
         print("Found: " + names[idx])
     else:
         print("Crew member not found.")
@@ -56,24 +56,30 @@ def update_rank(names, ranks, ids):
     updateid = input("Enter ID to update rank: ")
     if updateid in ids:
         idx = ids.index(updateid)
-        ranks[idx] = input("Enter new rank for " + names[idx] + ": ")
+        old_rank = ranks[idx]
+        new_rank = input("Enter new rank for " + names[idx] + " (Current: " + old_rank + "): ")
+        ranks[idx] = new_rank
         print("Rank updated.")
     else:
         print("ID not found.")
 
-def filter_by_division(names, divs):
+def filter_by_division(names, ranks, divs, ids):
     division = input("Enter division name: ")
-    print("Crew in " + division + " division:")
+    print("\n--- Crew in " + division + " ---")
+    found = False
     for i in range(len(names)):
         if divs[i] == division:
-            print("- " + names[i])
+            print("ID: " + str(ids[i]) + " | " + names[i] + " - " + ranks[i])
+            found = True
+    if not found:
+        print("No crew members found in this division.")
 
 def count_officers(ranks):
     count = 0
     for rank in ranks:
-        if rank == "Lieutenant" or "Commander":
+        if rank == "Lieutenant" or rank == "Commander":
             count += 1
-    print("Total Officers counted: " + str(count))
+    print("Total Officers (Lieutenants/Commanders): " + str(count))
 
 def main():
     n, r, d, i = init_database()
@@ -92,7 +98,7 @@ def main():
             print("Total Payroll: $" + str(total))
         elif opt == "5": search_crew(n, i)
         elif opt == "6": update_rank(n, r, i)
-        elif opt == "7": filter_by_division(n, d)
+        elif opt == "7": filter_by_division(n, r, d, i)
         elif opt == "8": count_officers(r)
         elif opt == "9":
             print("Shutting down...")
