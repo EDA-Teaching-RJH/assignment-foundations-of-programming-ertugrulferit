@@ -101,7 +101,7 @@ def main():
         elif opt == "7": filter_by_division(n, d)
         elif opt == "8": print(f"Senior Officers: {count_officers(r)}")
         elif opt == "9":
-            print("Logging out...")
+            print("Logging out...")           
             break
 
 main()
